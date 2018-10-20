@@ -46,13 +46,36 @@ this.props.onLike(likeObject);
 dislike = () => {
   const likeData = {
     requestId: this.props.id,
-    uid: this.props.uid
+    likeId: this.findMe(this.props.id)
   }
-  this.props.onRemoveLike(likeData);
- console.log("Trying to remove all likes on " + this.props.id);
+
+this.props.onRemoveLike(likeData);
+ 
   
 } 
 
+findMe = (id) => {
+  let likes = [];
+  for (const request of this.props.likes) {
+    if (request.requestId === id) {
+    likes = request.likes
+    } 
+    
+  }
+  
+  //console.log(likes);
+
+ for(const key in likes) {
+    if(likes.hasOwnProperty(key)) {
+        var value = likes[key];
+        if(value ==this.props.uid){
+          return key;
+        }
+    }
+    
+}
+
+}
 
 
 
@@ -62,7 +85,8 @@ render () {
       <p>
        {this.props.title} - {this.props.artist}
        <button onClick={this.like}>LIKE</button>
-       <button onClick={this.dislike}>DISLIKE</button>
+       <button onClick={this.dislike}>DISLIKE</button>   
+       
       </p>
    </div>
   )
@@ -79,7 +103,9 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = state => {
   return {
       name: state.auth.name,
-      uid: state.auth.uid
+      uid: state.auth.uid,
+      requests: state.requests,
+      likes: state.likes
   };
 
 }

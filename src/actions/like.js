@@ -15,6 +15,7 @@ export const addLike = (likeObject) => ({
         likedSongId = '',
         uid = '',
       } = likeData;
+      
 
      return database.ref(`requests/${likedSongId}/${'likes'}`).push(uid).then((ref) => {
         dispatch(addLike({
@@ -32,11 +33,11 @@ export const startRemoveLike = (likeData ={}) => {
   return (dispatch) => {
     const {
       requestId = '',
-      uid = '',
+      likeId = '',
     } = likeData;
     
-    return database.ref(`requests/${requestId}/${`likes`}`).remove().then(() => {
-      console.log('removing likes on this id: '+requestId);
+    return database.ref(`requests/${requestId}/${`likes`}/${likeId}`).remove().then(() => {
+      console.log('removing like on the id: '+likeId);
     });
     
 };
@@ -60,15 +61,13 @@ export const startSetLikes = (uid) => {
   return (dispatch) => {
     return database.ref('requests').once('value').then((snapshot) => {
       const likes = [];
+      const likes2 = [];
 
       snapshot.forEach((childSnapshot) => {
               likes.push({
-              requestId: childSnapshot.key,
-              uid: uid,
-              
-          });
-        
-      });
+                requestId: childSnapshot.key,
+                likes: childSnapshot.val().likes    
+              }       )})   
       dispatch(setLikes(likes));
       
     });

@@ -49,7 +49,7 @@ firebase.auth().onAuthStateChanged((user) => {
       store.dispatch(login(user.uid, user.displayName));
 
       store.dispatch(startSetRequests()).then(() => {
-        store.dispatch(startSetLikes(store.getState().auth.uid)).then(() => {
+        store.dispatch(startSetLikes()).then(() => {
               renderApp();
               if (history.location.pathname === '/') {
                   history.push('/dashboard');
