@@ -10,7 +10,7 @@ export class CreateRequest extends Component {
   
   this.state = {
     title: '',
-    artist: ''
+    artist: ' '
 };
   }
 
