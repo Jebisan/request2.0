@@ -5,19 +5,20 @@ import {startSetRequests} from '../actions/requests';
 
 export class Requests extends React.Component {
   constructor(props) {
-    super(props);
-}
+    super(props); 
+  }
     render () {
       return (
          <div>
          <h2>Songs</h2>
          {
-          
             this.props.requests.map((request) => 
-              <Request key = {request.id} {...request}/>
+              <Request 
+              key = {request.id} 
+              title = {request.title}
+              artist = {request.artist}/>
             )
-          
-        }
+            }
 
       </div>
       );

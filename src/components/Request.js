@@ -1,12 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const Request = ({...request}) => {
-  return (
-   <div>
-      <p> {request.title} - {request.artist}</p>
-     </div>
-   );
+export class Request extends React.Component {
+  constructor() {
+    super();
+  }
+
+render () {
+    return(
+    <div>
+      <p>
+       {this.props.title} - {this.props.artist}
+      </p>
+   </div>
+  )
+};
 }
 
-export default connect()(Request); 
+
+
+const mapStateToProps = (state, props) => ({
+  
+});
+
+
+const mapDispatchToProps = (dispatch, props) => ({
+ 
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Request); 
