@@ -1,62 +1,65 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { startAddLike, startRemoveLike } from '../actions/like';
+import { startAddLike, startRemoveLike, startAddDislike, startRemoveDislike} from '../actions/like';
 
 export class Request extends React.Component {
   constructor() {
     super();
     this.state = {
-      like: undefined
+      like: undefined,
+      dislike: undefined
     };
   }
 
 
 
 like = () => {
-  if(this.state.like===false){
-    console.log("You like this song again!")
-    this.setState({
-      like: true
-   });
-  
-  } else if (this.state.like===true){
-    console.log("You don't like this anymore!")
-    this.setState({
-      like: false
-  });
-  this.props.onRemoveLike(this.props.id);
-  
-} 
-else if(this.state.like === undefined) {
-  console.log("You like this song now!")
-  this.setState({
-     like: true
-  })
-}
+  if(this.state.like !==true) {
 const likeObject = {
   likedSongId: this.props.id, 
   uid: this.props.uid,
   name: this.props.name
 }
-//console.log("UID"+this.props.uid);
-
 this.props.onLike(likeObject);
-}
-
-dislike = () => {
+this.setState({ like: true })
+} else if (this.state.like === true) {
   const likeData = {
     requestId: this.props.id,
-    likeId: this.findMe(this.props.id)
+    likeId: this.findMe(this.props.id, this.props.likes)
   }
-
 this.props.onRemoveLike(likeData);
- 
-  
-} 
+this.setState({ like: false })
+}}
 
-findMe = (id) => {
+
+
+
+
+dislike = () => {
+  if(this.state.dislike !==true) {
+const dislikeObject = {
+  dislikedSongId: this.props.id, 
+  uid: this.props.uid,
+  name: this.props.name
+}
+this.props.onDislike(dislikeObject);
+this.setState({ dislike: true })
+
+} else if (this.state.dislike === true) {
+  const dislikeData = {
+    requestId: this.props.id,
+    dislikeId: this.findMe(this.props.id, this.props.dislikes)
+  }
+this.props.onRemoveDislike(dislikeData);
+this.setState({ dislike: false })
+}}
+
+
+
+
+findMe = (id, list) => {
   let likes = [];
-  for (const request of this.props.likes) {
+  for (const request of list) {
     if (request.requestId === id) {
     likes = request.likes
     } 
@@ -97,7 +100,9 @@ render () {
 
 const mapDispatchToProps = (dispatch) => ({
   onLike: (likeObject) => dispatch(startAddLike(likeObject)),
-  onRemoveLike: (likeObject) => dispatch(startRemoveLike(likeObject))
+  onRemoveLike: (likeObject) => dispatch(startRemoveLike(likeObject)),
+  onDislike: (dislikeObject) => dispatch(startAddDislike(dislikeObject)),
+  onRemoveDislike: (dislikeObject) => dispatch(startRemoveDislike(dislikeObject))
 });
 
 const mapStateToProps = state => {
