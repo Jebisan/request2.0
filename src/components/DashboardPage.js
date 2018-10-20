@@ -9,9 +9,9 @@ export class DashboardPage extends React.Component {
   }
   render () {
       return (
-  <div >
+  <div>
       <Requests/>
-      <button onClick = {this.createRequest}>+RE:QUEST</button>
+      <button class="button" onClick = {this.createRequest}>+RE:QUEST</button>
    </div>
   )}
 }
