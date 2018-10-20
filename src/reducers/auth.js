@@ -6,8 +6,6 @@ export default (state = {}, action) => {
       };
     case 'LOGOUT':
       return {};
-      case 'SET_REQUESTS': 
-      return action.requests;
     default:
       return state;
   }

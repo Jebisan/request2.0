@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 
-const config = {
+var config = {
   apiKey: "AIzaSyDMUKoYXcz8qz-MorlBwOFBs1Q4ScvLX_U",
   authDomain: "request-d8f1b.firebaseapp.com",
   databaseURL: "https://request-d8f1b.firebaseio.com",
