@@ -7,7 +7,7 @@ export default (state = likesReducerDefaultState, action) => {
     case 'ADD_LIKE':
       return [
         ...state,
-        action.like
+        action.uid
       ];
       case 'SET_LIKES': 
       return action.likes;

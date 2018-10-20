@@ -3,9 +3,9 @@ import database from '../firebase/firebase';
 
 // ADD_LIKE
 
-export const addLike = (likeObject) => ({
+export const addLike = (uid) => ({
     type: 'ADD_LIKE',
-    likeObject
+    uid
   });
 
 
@@ -18,9 +18,9 @@ export const addLike = (likeObject) => ({
       
 
      return database.ref(`requests/${likedSongId}/${'likes'}`).push(uid).then((ref) => {
-        dispatch(addLike({
+        dispatch(addLike(
        uid
-        }));
+        ));
       });
     };
   };
