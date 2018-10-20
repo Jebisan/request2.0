@@ -15,6 +15,7 @@ export class Requests extends React.Component {
             this.props.requests.map((request) => 
               <Request 
               key = {request.id} 
+              id = {request.id}
               title = {request.title}
               artist = {request.artist}/>
             )

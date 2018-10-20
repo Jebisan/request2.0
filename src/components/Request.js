@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { startAddLike } from '../actions/like';
 
 export class Request extends React.Component {
   constructor() {
@@ -31,6 +32,12 @@ else if(this.state.like == undefined) {
      like: true
   })
 }
+const likeObject = {
+  likedSongId: this.props.id, 
+  userId: this.props.name
+}
+
+this.props.onLike(likeObject);
 }
 
 dislike = () => {
@@ -73,4 +80,15 @@ render () {
 
 
 
-export default connect()(Request); 
+const mapDispatchToProps = (dispatch) => ({
+  onLike: (likeObject) => dispatch(startAddLike(likeObject))
+});
+
+const mapStateToProps = state => {
+  return {
+      name: state.auth.name
+  };
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Request);

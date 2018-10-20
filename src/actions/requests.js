@@ -40,11 +40,12 @@ export const startAddRequest = (requestData = {}) => {
   return (dispatch) => {
     const {
       title = '0',
-      artist = '0'
+      artist = '0',
+      likes = [],
 
     } = requestData; 
 
-    const requestObject = {title, artist};
+    const requestObject = {title, artist, likes};
 
 
    return database.ref('requests').push(requestObject).then((ref) => {

@@ -18,7 +18,8 @@ export class CreateRequest extends Component {
     e.preventDefault();   
     const requestObject = {
         title: this.state.title,
-        artist: this.state.artist
+        artist: this.state.artist,
+        likes: ['sup', 'whatup']
     }
     if(this.state.title && this.state.artist){
     this.props.startAddRequest(requestObject); 

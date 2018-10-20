@@ -22,7 +22,7 @@ const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
-
+  
   </div>
 );
 //  <button onClick = {getStore}>STORE</button>
