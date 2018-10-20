@@ -5,6 +5,7 @@ import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {login, logout } from './actions/auth';
 import {startSetRequests} from './actions/requests';
+import {startSetLikes} from './actions/like';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
@@ -22,10 +23,10 @@ const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
-  
+  <button onClick = {getStore}>STORE</button>
   </div>
 );
-//  <button onClick = {getStore}>STORE</button>
+// 
 
 
 let hasRendered = false;
@@ -48,11 +49,13 @@ firebase.auth().onAuthStateChanged((user) => {
       store.dispatch(login(user.uid, user.displayName));
 
       store.dispatch(startSetRequests()).then(() => {
+        store.dispatch(startSetLikes(store.getState().auth.uid)).then(() => {
               renderApp();
               if (history.location.pathname === '/') {
                   history.push('/dashboard');
               }
           });
+        });
 
           
   } else {
