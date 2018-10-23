@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.logo-container {
+  max-width: 450px;
+  padding: 20px;
+
+  .logo {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: $m-size;
+  line-height: 1.6;
+}
+
+.app {
+  width: 100%;
+
+  & > div {
+    height: 100%;
+  }
+}
+
+h1 {
+  font-weight: 800;
+}
+
+p {
+  font-weight: 300;
+  font-size: 16px;
+  color: $dark-grey;
+}
+
+button {
+  cursor: pointer;
+}
+
+.has-error {
+  color: $error-color;
+  font-size: 10px;
+  font-weight: 400;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.is-active {
+  font-weight: bold;
+}
+
+small {
+  font-size: 12px;
+  color: $dark-grey;
+}
+
+.song-title-input {
+  margin-bottom: 15px;
+}
+
+.form-control {
+  color: white;
+  font-size: 14px;
+  background-color: $input-field;
+  padding: 8px;
+  border-radius: 5px;
+  margin-bottom: 3px;
+  margin-top: 3px;
+
+  &.has-error {
+    border-color: $error-color;
+    animation-name: shake;
+    animation-duration: .8s;
+    margin-bottom: 3px;
+  }
+
+  &:focus{
+    color: white;
+    background-color: $input-field;
+    border-color: $focus-color;
+  }
+}

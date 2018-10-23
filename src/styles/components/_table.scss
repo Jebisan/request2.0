@@ -1,0 +1,27 @@
+.table {
+    table-layout: fixed; 
+
+    td {
+        border-bottom: 1px solid $border-color; 
+        border-top: 1px solid $border-color; 
+        vertical-align: middle;
+
+        &.vote-column {
+            width: 50px;
+            text-align: right;
+        }
+    }
+}
+
+.song-title {
+    color: $dark-grey;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.artist-name {
+    color: $grey;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+}

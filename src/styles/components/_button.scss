@@ -1,0 +1,66 @@
+.btn-primary {
+  background: $primary;
+  color: $white;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 17px 60px 17px 60px;
+  border-radius: 40px;
+  border-color: $border-color;
+  margin-bottom: 20px;
+
+  &:hover {
+    background: $primaryHover;
+    border-color: $border-color;
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.login-btn {
+  height: 40px;
+  border-radius: 5px;
+  background-color: white;
+  color: rgba(0,0,0,.54);
+  box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+  padding-left: 8px;
+  padding-right: 24px;
+  font-size: 14px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-weight: 400;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  img {
+    margin-right: 18px;
+    width: 18px;
+  }
+}
+
+.btn-link {
+  color: white;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.vote-btn {
+  background: none;
+  border: none;
+  color: white; 
+  padding: 0 5px 0 5px;
+
+  &:focus {
+    outline: none;
+  }
+
+  i {
+    font-size: 18px;
+  }
+}
