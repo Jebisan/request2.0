@@ -63,19 +63,14 @@ likeHandler = () => {
      // console.log("Liked!");
      });
 
-     const dislikeData = { 
+     const dislikeData = {
       dislikedSongId:this.props.id, 
       dislikeId:this.findMe2(this.props.id,this.props.dislikes)
-    } 
+    }
     this.setState(() => ({dislike: false}), () => {
       this.props.onRemoveDislike(dislikeData);
       //console.log("not disliked!");
   });
-
-  this.setState((prevState) => ({
-    numberOfLike: prevState.numberOfLike + 1
-  }));
-  
   }  else if (this.state.like===true){
    
    
@@ -87,9 +82,7 @@ likeHandler = () => {
       this.props.onRemoveLike(likeData);
       //console.log("not liked!");
   });
-  this.setState((prevState) => ({
-    numberOfLike: prevState.numberOfLike - 1
-  }));
+
 }
 }
 
@@ -105,7 +98,7 @@ dislikeHandler = () => {
        this.props.onDislike(this.props.id,dislikeObject);
        console.log("disliked!");
       });
- 
+      
       const likeData = { 
         likedSongId:this.props.id, 
         likeId:this.findMe2(this.props.id,this.props.likes)
@@ -114,9 +107,6 @@ dislikeHandler = () => {
         this.props.onRemoveLike(likeData);
         console.log("not liked!");
     });
-    this.setState((prevState) => ({
-      numberOfDislikes: prevState.numberOfDislikes + 1
-    }));
  
    }  else if (this.state.dislike===true){
      const dislikeData = { 
@@ -127,9 +117,6 @@ dislikeHandler = () => {
        this.props.onRemoveDislike(dislikeData);
        console.log("not disliked!");
    });
-   this.setState((prevState) => ({
-    numberOfDislikes: prevState.numberOfDislikes - 1
-  }));
   }
 }
 
