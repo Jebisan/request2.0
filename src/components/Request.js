@@ -28,6 +28,7 @@
           var value = objlikes[key];
             if(Object.values(value)[0]===this.props.uid){
               this.setState(() => ({like: true}))
+              this.setState((prevState) => ({ numberOfLikes: prevState.numberOfLikes + 1 }))
             }
           }    
   }
@@ -44,9 +45,13 @@
         var value = objdislikes[key];
           if(Object.values(value)[0]===this.props.uid){
             this.setState(() => ({dislike: true}))
+            this.setState((prevState) => ({ numberOfDislikes: prevState.numberOfDislikes + 1 }))
+            
+
           }
         }    
   }
+
 
 }
 
