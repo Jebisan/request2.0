@@ -14,4 +14,9 @@ firebase.initializeApp(config);
 const database = firebase.database();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
+database.ref().on('value', (snapshot) => {
+  
+  alert('SOMETHING WAS CHANGED');
+});
+
 export { firebase, googleAuthProvider, database as default };
