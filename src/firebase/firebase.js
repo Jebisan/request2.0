@@ -16,7 +16,7 @@ const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 database.ref().on('value', (snapshot) => {
   
-  alert('SOMETHING WAS CHANGED');
+ // alert('SOMETHING WAS CHANGED');
 });
 
 export { firebase, googleAuthProvider, database as default };

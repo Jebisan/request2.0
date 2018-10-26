@@ -43,7 +43,7 @@
 
     if(objdislikes.hasOwnProperty(key)) {
         var value = objdislikes[key];
-          if(Object.values(value)[0]===this.props.uid){
+          if(Object.values(value)[0]===this.props.uid){   
             this.setState(() => ({dislike: true}))
             this.setState((prevState) => ({ numberOfDislikes: prevState.numberOfDislikes + 1 }))
             
@@ -53,6 +53,29 @@
   }
 
 
+  if(this.getLikeObject().likedSongId==this.props.id){
+    this.setState((prevState) => ({ numberOfLikes: prevState.numberOfLikes + this.getLikeObject().likes.length }))
+  }
+
+  if(this.getDislikeObject().dislikedSongId==this.props.id){
+    this.setState((prevState) => ({ numberOfDislikes: prevState.numberOfDislikes + this.getDislikeObject().dislikes.length }))
+  }
+  
+
+}
+
+getLikeObject = () => {
+  for (const request of this.props.likes) {
+    if (request.likedSongId === this.props.id) {
+    return request
+    }}
+}
+
+getDislikeObject = () => {
+  for (const request of this.props.dislikes) {
+    if (request.dislikedSongId === this.props.id) {
+    return request
+    }}
 }
 
   likeHandler = () => {
