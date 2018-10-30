@@ -16,64 +16,56 @@
 
 
   componentDidMount(){
+//HENTER ALLE LIKES
+    if(this.getLikeObject().id===this.props.id){
+      this.setState(() => ({ numberOfLikes:this.getLikeObject().likes.length }))
+    }
+
+    //HVIS JEG ALLEREDE HAR LIKED, SET NUMBER_OF_LIKES +1
     let objlikes = [];
     this.props.likes.forEach(element => {
       if(element.likedSongId===this.props.id)
       objlikes = element.likes;
-      
     });
     for(const key in objlikes) {
-
       if(objlikes.hasOwnProperty(key)) {
           var value = objlikes[key];
             if(Object.values(value)[0]===this.props.uid){
               this.setState(() => ({like: true}))
-         //     this.setState((prevState) => ({ numberOfLikes: prevState.numberOfLikes + 1 }))
             }
           }    
+  }
+
+  //HENTER ALLE DISLIKES
+  if(this.getDislikeObject().id===this.props.id){
+    this.setState(() => ({ numberOfDislikes:this.getDislikeObject().dislikes.length }))
   }
 
   let objdislikes = [];
   this.props.dislikes.forEach(element => {
     if(element.dislikedSongId===this.props.id)
     objdislikes = element.dislikes;
-    
   });
   for(const key in objdislikes) {
-
     if(objdislikes.hasOwnProperty(key)) {
         var value = objdislikes[key];
           if(Object.values(value)[0]===this.props.uid){   
             this.setState(() => ({dislike: true}))
-          //  this.setState((prevState) => ({ numberOfDislikes: prevState.numberOfDislikes + 1 }))
-            
-
           }
         }    
   }
-
-
-  if(this.getLikeObject().likedSongId==this.props.id){
-    this.setState((prevState) => ({ numberOfLikes: prevState.numberOfLikes + this.getLikeObject().likes.length }))
-  }
-
-  if(this.getDislikeObject().dislikedSongId==this.props.id){
-    this.setState((prevState) => ({ numberOfDislikes: prevState.numberOfDislikes + this.getDislikeObject().dislikes.length }))
-  }
-  
-
 }
 
 getLikeObject = () => {
-  for (const request of this.props.likes) {
-    if (request.likedSongId === this.props.id) {
+  for (const request of this.props.requests) {
+    if (request.id === this.props.id) {
     return request
     }}
 }
 
 getDislikeObject = () => {
-  for (const request of this.props.dislikes) {
-    if (request.dislikedSongId === this.props.id) {
+  for (const request of this.props.requests) {
+    if (request.id === this.props.id) {
     return request
     }}
 }
@@ -87,7 +79,7 @@ getDislikeObject = () => {
 
       this.setState(() => ({like: true}), () => {
         this.props.onLike(this.props.id,likeObject);
-      // console.log("Liked!");
+      //console.log("Liked!", this.props.id);
       });
       this.setState((prevState) => ({ numberOfLikes: prevState.numberOfLikes + 1 }))
 
@@ -170,6 +162,10 @@ getDislikeObject = () => {
         }
       });
       return foundLikeId
+  }
+
+  getState = () => {
+    console.log(this.state);
   }
 
   render () {
