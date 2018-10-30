@@ -47,7 +47,8 @@ export const startAddRequest = (requestData = {}) => {
       dispatch(addRequest({
         id: ref.key,
         ...requestObject
-      }));
+      }),
+      );
     });
   };
 };

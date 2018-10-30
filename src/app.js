@@ -23,9 +23,8 @@ const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
- 
 );
-// 
+// <button onClick={getStore}>STORE</button>
 
 let hasRendered = false;
 const renderApp = () => {

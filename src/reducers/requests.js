@@ -1,6 +1,3 @@
-
-
-
 const requestsReducerDefaultState = [];
 
 export default (state = requestsReducerDefaultState, action) => {
@@ -10,7 +7,7 @@ export default (state = requestsReducerDefaultState, action) => {
           return [
             ...state,
             {
-              id: action.id,
+              id: action.request.id,
             title: action.request.title,
             artist: action.request.artist,
             likes: [],
