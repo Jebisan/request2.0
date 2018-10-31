@@ -21,9 +21,12 @@ const getStore = () => {
 }
 
 const jsx = (
+  //<div>
   <Provider store={store}>
     <AppRouter />
   </Provider>
+ // <button onClick={getStore}>GET STORE</button>
+ // </div>
 );
 
 
