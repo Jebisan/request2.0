@@ -42,11 +42,12 @@ export const startAddRequest = (requestData = {}) => {
 
     const requestObject = {title, artist, likes};
     return database.ref('requests').push(requestObject).then((ref) => {
-      dispatch(addRequest({
+    /*  dispatch(addRequest({
         id: ref.key,
         ...requestObject
       }),
-      );
+
+      );*/
     });
   };
 };

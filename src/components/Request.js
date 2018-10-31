@@ -17,9 +17,9 @@
 
   componentDidMount(){
 //HENTER ALLE LIKES
-    if(this.getLikeObject().likedSongId===this.props.id){
+   /* if(this.getLikeObject().likedSongId===this.props.id){
       this.setState(() => ({ numberOfLikes:this.getLikeObject().likes.length }))
-    }
+    }*/
 
     //HVIS JEG ALLEREDE HAR LIKED, SET NUMBER_OF_LIKES +1
     let objlikes = [];
@@ -37,9 +37,9 @@
   }
 
   //HENTER ALLE DISLIKES
-  if(this.getDislikeObject().dislikedSongId===this.props.id){
+  /*if(this.getDislikeObject().dislikedSongId===this.props.id){
     this.setState(() => ({ numberOfDislikes:this.getDislikeObject().dislikes.length }))
-  }
+  }*/
 
   let objdislikes = [];
   this.props.dislikes.forEach(element => {

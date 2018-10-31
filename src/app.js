@@ -21,14 +21,11 @@ const getStore = () => {
 }
 
 const jsx = (
-  //<div>
   <Provider store={store}>
     <AppRouter />
   </Provider>
- // <button onClick={getStore}>STORE</button>
-  //</div>
 );
-// 
+
 
 let hasRendered = false;
 const renderApp = () => {
