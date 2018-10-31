@@ -2,7 +2,7 @@
   import {connect} from 'react-redux';
   import { startAddLike, startRemoveLike} from '../actions/like';
   import {startAddDislike, startRemoveDislike} from '../actions/dislike';
-
+  
   export class Request extends React.Component {
     constructor() {
       super();
@@ -17,7 +17,7 @@
 
   componentDidMount(){
 //HENTER ALLE LIKES
-    if(this.getLikeObject().id===this.props.id){
+    if(this.getLikeObject().likedSongId===this.props.id){
       this.setState(() => ({ numberOfLikes:this.getLikeObject().likes.length }))
     }
 
@@ -37,7 +37,7 @@
   }
 
   //HENTER ALLE DISLIKES
-  if(this.getDislikeObject().id===this.props.id){
+  if(this.getDislikeObject().dislikedSongId===this.props.id){
     this.setState(() => ({ numberOfDislikes:this.getDislikeObject().dislikes.length }))
   }
 
@@ -57,15 +57,15 @@
 }
 
 getLikeObject = () => {
-  for (const request of this.props.requests) {
-    if (request.id === this.props.id) {
+  for (const request of this.props.likes) {
+    if (request.likedSongId === this.props.id) {
     return request
     }}
 }
 
 getDislikeObject = () => {
-  for (const request of this.props.requests) {
-    if (request.id === this.props.id) {
+  for (const request of this.props.dislikes) {
+    if (request.dislikedSongId === this.props.id) {
     return request
     }}
 }

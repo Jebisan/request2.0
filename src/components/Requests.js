@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from 'react-redux';
 import Request from './Request';
+import database from '../firebase/firebase';
+import {addRequest } from '../actions/requests';
 
 export class Requests extends React.Component {
   constructor(props) {

@@ -1,6 +1,8 @@
 import database from '../firebase/firebase';
 
 //SET_REQUESTS
+
+/*
 export const setRequests = (requests) => ({
   type: 'SET_REQUESTS', 
   requests
@@ -10,21 +12,20 @@ export const startSetRequests = () => {
   return (dispatch) => {
     return database.ref('requests').once('value').then((snapshot) => {
       const requests = [];
-
+      
       snapshot.forEach((childSnapshot) => {
               requests.push({
             id: childSnapshot.key,
             ...childSnapshot.val()
           });
-        
       });
       dispatch(setRequests(requests));
     //  console.log(requests);
-      
     });
   };
 };
 
+*/
 // ADD_REQUEST
 export const addRequest = (request) => ({
   type: 'ADD_REQUEST',
@@ -37,13 +38,10 @@ export const startAddRequest = (requestData = {}) => {
       title = '0',
       artist = '0',
       likes = [],
-
     } = requestData; 
 
     const requestObject = {title, artist, likes};
-
-
-   return database.ref('requests').push(requestObject).then((ref) => {
+    return database.ref('requests').push(requestObject).then((ref) => {
       dispatch(addRequest({
         id: ref.key,
         ...requestObject
@@ -53,3 +51,19 @@ export const startAddRequest = (requestData = {}) => {
   };
 };
 
+
+//LISTENERS
+
+export const listenForRequests = () => {
+  return (dispatch) => {
+    database.ref('requests').on('child_added', data => {
+      //console.log('HERE: ',data.val());
+      dispatch(addRequest(
+        {
+        id: data.key,
+        ...data.val()
+      }
+        ));
+    });
+  };
+}

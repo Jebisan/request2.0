@@ -4,14 +4,15 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {login, logout } from './actions/auth';
-import {startSetRequests} from './actions/requests';
-import {startSetLikes} from './actions/like';
+import {startSetRequests, listenForRequests} from './actions/requests';
+import {startSetLikes, listenForLikes} from './actions/like';
 import {startSetDislikes} from './actions/dislike';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
+import {watchRequestAddedEvent} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -20,11 +21,14 @@ const getStore = () => {
 }
 
 const jsx = (
+  //<div>
   <Provider store={store}>
     <AppRouter />
   </Provider>
+ // <button onClick={getStore}>STORE</button>
+  //</div>
 );
-// <button onClick={getStore}>STORE</button>
+// 
 
 let hasRendered = false;
 const renderApp = () => {
@@ -45,10 +49,11 @@ firebase.auth().onAuthStateChanged((user) => {
       //console.log(user.displayName);
       store.dispatch(login(user.uid, user.displayName));
 
-      store.dispatch(startSetRequests()).then(() => {
-       store.dispatch(startSetLikes()).then(() => {
+  // store.dispatch(startSetRequests()).then(() => {
+      store.dispatch(startSetLikes()).then(() => {
         store.dispatch(startSetDislikes()).then(() => {
-
+          store.dispatch(listenForRequests());
+     //     store.dispatch(listenForLikes());
         
               renderApp();
               if (history.location.pathname === '/') {
@@ -56,7 +61,7 @@ firebase.auth().onAuthStateChanged((user) => {
               }
         });
       });
-    });
+  //  });
 
           
   } else {
