@@ -62,9 +62,13 @@ export const listenForRequests = () => {
       dispatch(addRequest(
         {
         id: data.key,
-        ...data.val()
+        title: data.val().title,
+        artist: data.val().artist,
+        likes: data.val().likes,
+        dislikes: data.val().dislikes,
       }
         ));
+        //console.log(data.val());
     });
   };
 }

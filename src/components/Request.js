@@ -17,8 +17,9 @@
 
   componentDidMount(){
 //HENTER ALLE LIKES
-    if(this.getLikeObject().likedSongId===this.props.id){
+    if(this.getLikeObject().id===this.props.id){
       this.setState(() => ({ numberOfLikes:this.getLikeObject().likes.length }))
+      //console.log('WHAT: ', this.getLikeObject().likes);
     }
 
     //HVIS JEG ALLEREDE HAR LIKED, SET NUMBER_OF_LIKES +1
@@ -37,7 +38,7 @@
   }
 
   //HENTER ALLE DISLIKES
-  if(this.getDislikeObject().dislikedSongId===this.props.id){
+  if(this.getDislikeObject().id===this.props.id){
     this.setState(() => ({ numberOfDislikes:this.getDislikeObject().dislikes.length }))
   }
 
@@ -57,15 +58,15 @@
 }
 
 getLikeObject = () => {
-  for (const request of this.props.likes) {
-    if (request.likedSongId === this.props.id) {
+  for (const request of this.props.requests) {
+    if (request.id === this.props.id) {
     return request
     }}
 }
 
 getDislikeObject = () => {
-  for (const request of this.props.dislikes) {
-    if (request.dislikedSongId === this.props.id) {
+  for (const request of this.props.requests) {
+    if (request.id === this.props.id) {
     return request
     }}
 }
