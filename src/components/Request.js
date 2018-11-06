@@ -98,7 +98,7 @@ export class Request extends React.Component {
       });
       if (this.state.like === true) {
         this.setState(() => ({ like: false }), () => {
-          this.props.onRemoveLike(this.props.id, this.findDislikeId());
+          this.props.onRemoveLike(this.props.id, this.findLikeId());
         });
       }
     } else if (this.state.dislike === true) {
