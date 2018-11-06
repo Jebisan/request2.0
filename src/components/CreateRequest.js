@@ -87,10 +87,9 @@ export class CreateRequest extends Component {
   }
 }
 
-const mapStateToProps = (state, props) => ({});
 
 const mapDispatchToProps = (dispatch) => ({
   startAddRequest: (request) => dispatch(startAddRequest(request))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest);
+export default connect(null, mapDispatchToProps)(CreateRequest);

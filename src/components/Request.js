@@ -11,7 +11,6 @@ export class Request extends React.Component {
       dislike: undefined,
       numberOfLikes: 0,
       numberOfDislikes: 0,
-      tempNumber: 0,
     };
   }
   componentWillReceiveProps(nextProps){
@@ -90,7 +89,7 @@ export class Request extends React.Component {
     let foundReactionId = '';
     list.forEach(element => {
       if (Object.values(element)[0] === this.props.uid && Object.values(element)[0]) {
-        foundReactionId = Object.keys(element)[0].toString();
+        foundReactionId = Object.keys(element)[0];
       }
     });
     return foundReactionId;

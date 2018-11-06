@@ -13,13 +13,5 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
-/*
-console.log('what');
 
-database.ref('requests').on("child_changed", function(snapshot, prevChildKey) {
-  console.log(snapshot.val());
-  console.log(prevChildKey);
-});
-
-*/
 export { firebase, googleAuthProvider, database as default };

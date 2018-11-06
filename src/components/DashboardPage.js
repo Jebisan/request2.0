@@ -7,6 +7,7 @@ export class DashboardPage extends React.Component {
   createRequest = () => {
     this.props.history.push('/createrequest');
   }
+
   render () {
       return (
   <div className="page-container"> 
@@ -25,13 +26,4 @@ export class DashboardPage extends React.Component {
 }
 
 
-const mapDispatchToProps = (dispatch) => ({
-  //onSubmit: (date) => dispatch(startAddDate(date))
-});
-
-const mapStateToProps = state => {
-  return {
-      request: state.requests
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage);
+export default connect()(DashboardPage);
