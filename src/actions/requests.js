@@ -20,9 +20,6 @@ export const startAddRequest = (requestData = {}) => {
   };
 };
 
-
-//LISTENERS
-
 //LISTENS FOR REQUESTS
 export const listenForRequests = () => {
   return (dispatch) => {
@@ -47,7 +44,6 @@ export const listenForRequests = () => {
     });
   };
 }
-
 
 // EDIT_REQUEST
 export const updateRequest = (id, newRequestObject) => (

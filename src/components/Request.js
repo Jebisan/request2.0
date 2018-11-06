@@ -22,43 +22,21 @@ export class Request extends React.Component {
 
   componentDidMount() {
     //HVIS JEG ALLEREDE HAR LIKED, SET STATE.LIKE = TRUE
-    let objlikes = [];
-    this.props.requests.forEach(request => {
-      if (request.id === this.props.id)
-        objlikes = request.likes;
-    });
-
-    for (const key in objlikes) {
-      if (objlikes.hasOwnProperty(key)) {
-        var value = objlikes[key];
+    for (const key in this.props.likes) {
+      if (this.props.likes.hasOwnProperty(key)) {
+        var value = this.props.likes[key];
         if (Object.values(value)[0] === this.props.uid) {
           this.setState(() => ({ like: true }))
-
         }
       }
     }
-
-
     //HVIS JEG ALLEREDE HAR DISLIKED, SET STATE.DISLIKE = TRUE
-    let objdislikes = [];
-    this.props.requests.forEach(request => {
-      if (request.id === this.props.id)
-        objdislikes = request.dislikes;
-    });
-    for (const key in objdislikes) {
-      if (objdislikes.hasOwnProperty(key)) {
-        var value = objdislikes[key];
+    for (const key in this.props.dislikes) {
+      if (this.props.dislikes.hasOwnProperty(key)) {
+        var value = this.props.dislikes[key];
         if (Object.values(value)[0] === this.props.uid) {
           this.setState(() => ({ dislike: true }))
         }
-      }
-    }
-  }
-
-  getRequest = () => {
-    for (const request of this.props.requests) {
-      if (request.id === this.props.id) {
-        return request
       }
     }
   }
@@ -75,12 +53,12 @@ export class Request extends React.Component {
       });
     if (this.state.dislike === true) {
         this.setState(() => ({ dislike: false }), () => {
-          this.props.onRemoveDislike(this.props.id, this.findDislikeId());
+          this.props.onRemoveDislike(this.props.id, this.findReactionId(this.props.dislikes));
         });
       }
   } else if (this.state.like === true) {
       this.setState(() => ({ like: false }), () => {
-        this.props.onRemoveLike(this.props.id, this.findLikeId());
+        this.props.onRemoveLike(this.props.id, this.findReactionId(this.props.likes));
       });
     }
   }
@@ -98,51 +76,27 @@ export class Request extends React.Component {
       });
       if (this.state.like === true) {
         this.setState(() => ({ like: false }), () => {
-          this.props.onRemoveLike(this.props.id, this.findLikeId());
+          this.props.onRemoveLike(this.props.id, this.findReactionId(this.props.likes));
         });
       }
     } else if (this.state.dislike === true) {
       this.setState(() => ({ dislike: false }), () => {
-        this.props.onRemoveDislike(this.props.id, this.findDislikeId());
+        this.props.onRemoveDislike(this.props.id, this.findReactionId(this.props.dislikes));
       });
     }
   }
 
-  findLikeId = () => {
-    let listOfLikes = [];
-    let foundLikeId = '';
-    for (const request of this.props.requests) {
-      if (request.id === this.props.id) {
-        listOfLikes = request.likes
-      }
-    }
-    listOfLikes.forEach(element => {
+  findReactionId = (list) => {
+    let foundReactionId = '';
+    list.forEach(element => {
       if (Object.values(element)[0] === this.props.uid && Object.values(element)[0]) {
-        foundLikeId = Object.keys(element)[0].toString();
+        foundReactionId = Object.keys(element)[0].toString();
       }
     });
-    return foundLikeId;
-  }
-
-  findDislikeId = () => {
-    let listOfDislikes = [];
-    let foundDislikeId = '';
-    for (const request of this.props.requests) {
-      if (request.id === this.props.id) {
-        listOfDislikes = request.dislikes
-      }
-    }
-    listOfDislikes.forEach(element => {
-      if (Object.values(element)[0] === this.props.uid && Object.values(element)[0]) {
-        foundDislikeId = Object.keys(element)[0].toString();
-      }
-    });
-    return foundDislikeId;
+    return foundReactionId;
   }
 
   render() {
-
-
     return (
       <React.Fragment>
         <tr>
@@ -170,9 +124,6 @@ export class Request extends React.Component {
   };
 
 }
-
-
-
 const mapDispatchToProps = (dispatch) => ({
   onLike: (id, likeObject) => dispatch(startAddLike(id, likeObject)),
   onRemoveLike: (likedSongId, likeId) => dispatch(startRemoveLike(likedSongId, likeId)),

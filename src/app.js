@@ -4,15 +4,12 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {login, logout } from './actions/auth';
-import {startSetRequests, listenForRequests} from './actions/requests';
-import {listenForLikes} from './actions/like';
-import {startSetDislikes} from './actions/dislike';
+import {listenForRequests} from './actions/requests';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import { firebase } from './firebase/firebase';
 import LoadingPage from './components/LoadingPage';
-import {watchRequestAddedEvent} from './firebase/firebase';
 
 const store = configureStore();
 
@@ -45,18 +42,14 @@ const renderApp = () => {
   }
 };
 
-
-
 ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
-      //console.log(user.displayName);
   store.dispatch(login(user.uid, user.displayName));
-    store.dispatch(listenForRequests());
-  //    store.dispatch(listenForLikes());
-              renderApp();
+  store.dispatch(listenForRequests());
+  renderApp();
               if (history.location.pathname === '/') {
                   history.push('/dashboard');
               }
