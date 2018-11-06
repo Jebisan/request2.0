@@ -1,109 +1,66 @@
 const requestsReducerDefaultState = [];
 
 export default (state = requestsReducerDefaultState, action) => {
+  switch (action.type) {
+    case 'ADD_REQUEST':
 
-    switch (action.type) {
-      case 'ADD_LIKE':
-      return state.map((request) => {
-        let key = action.key
-            if (request.likedSongId === action.likedSongId) {
-              return {
-                likedSongId: action.likedSongId, 
-                likes: [...request.likes, {[key]: action.likeUpdates.uid}]
-              }
-            } else {
-              return request;
-            };
-          });
-          
-      case 'ADD_REQUEST':
-      //CONVERTING LIKES TO ARRAY
-     const newlikes = [];
-     let tempLikeKey =''
-      for(const key in action.request.likes) {
-        tempLikeKey = key;
-        if(action.request.likes.hasOwnProperty(key)) {
-            var value = action.request.likes[key];
-        }
-        newlikes.push({
-          [tempLikeKey]:value}          
-          );
-      }
+    //CONVERT LIKES TO ARRAY
+    var newLikeArray = []
+    action.request.likes? newLikeArray=Object.keys(action.request.likes).map(function(key) {
+      return {[key]: action.request.likes[key]};
+    }): null ;
 
-      //CONVERTING DISLIKES TO ARRAY
 
-      const newdislikes = [];
-      let tempDislikeKey =''
-       for(const key in action.request.dislikes) {
-         tempDislikeKey = key;
-         if(action.request.dislikes.hasOwnProperty(key)) {
-             var value = action.request.dislikes[key];
-         }
-         newdislikes.push({
-           [tempDislikeKey]:value}          
-           );
-       }
-
+    //CONVERT DISLIKES TO ARRAY
+    var newDislikeArray = []
+    action.request.dislikes? newDislikeArray=Object.keys(action.request.dislikes).map(function(key) {
+      return {[key]: action.request.dislikes[key]};
+    }): null ;
+    
       return [
-            ...state,
-            {
-              id: action.request.id,
-            title: action.request.title,
-            artist: action.request.artist,
-            likes: newlikes,
-            dislikes: newdislikes
-          }];
-
-
-          
-/*
-        case 'SET_REQUESTS': 
-      let newFinalArray = [];
-      let elements = action.requests;
-
-      elements.forEach(element => {
-        const newlikes = [];
-        let tempLikeKey =''
-        const newdislikes = [];
-        let tempdislikeKey =''
-
-       
-        for(const key in element.likes) {
-          tempLikeKey = key;
-          if(element.likes.hasOwnProperty(key)) {
-              var value = element.likes[key];
-          }
-          newlikes.push({
-            [tempLikeKey]:value}          
-            );
-      }
-
-      for(const key in element.dislikes) {
-        tempdislikeKey = key;
-        if(element.dislikes.hasOwnProperty(key)) {
-            var value = element.dislikes[key];
+        ...state,
+        {
+          id: action.request.id,
+          title: action.request.title,
+          artist: action.request.artist,
+          likes: newLikeArray,
+          dislikes: newDislikeArray
         }
-        newdislikes.push({
-          [tempdislikeKey]:value}          
-          );
-    }
+      ];
+
+      case 'UPDATE_REQUEST':
+      return state.map((request) => {
+        if (request.id === action.id) {
+
+          //CONVERT LIKES TO ARRAY
+          var newLikeArray = []
+          action.newRequestObject.likes? newLikeArray=Object.keys(action.newRequestObject.likes).map(function(key) {
+            return {[key]: action.newRequestObject.likes[key]};
+          }): null ;
 
 
-      newFinalArray.push({
-        id: element.id,
-        title: element.title,
-        artist: element.artist,
-        likes: newlikes, 
-        dislikes: newdislikes
-      })
+          //CONVERT DISLIKES TO ARRAY
+          var newDislikeArray = []
+          action.newRequestObject.dislikes? newDislikeArray=Object.keys(action.newRequestObject.dislikes).map(function(key) {
+            return {[key]: action.newRequestObject.dislikes[key]};
+          }): null ;
+          
+          return {
+            ...request,
+            
+              id: action.id,
+              title: action.newRequestObject.title,
+              artist: action.newRequestObject.artist,
+              likes: newLikeArray,
+              dislikes: newDislikeArray
+            
+          };
+        } else {
+          return request;
+        };
       });
-      return newFinalArray;
-*/
-      default:
-        return state;
 
-      
-        
-    }
-  };
-  
+    default:
+      return state;
+  }
+};

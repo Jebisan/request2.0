@@ -23,19 +23,12 @@ export const addDislike = (dislikedSongId, dislikeUpdates, key) => (
   };
 
 //START_REMOVE_LIKE
-export const startRemoveDislike = (dislikeData ={}) => {
-  return (dispatch) => {
-    const {
-      dislikedSongId = '',
-      dislikeId = '',
-    } = dislikeData;
-    
+export const startRemoveDislike = (dislikedSongId, dislikeId) => {
+  return (dispatch) => {    
     return database.ref(`requests/${dislikedSongId}/${`dislikes`}/${dislikeId}`).remove().then(() => {
       dispatch(removeDislike(dislikedSongId, dislikeId));
     });
-    
 };
-
 };
     
   // REMOVE_LIKE
@@ -46,26 +39,3 @@ export const startRemoveDislike = (dislikeData ={}) => {
       dislikeId
     }
     );
-
-    //SET_LIKES
-export const setDislikes = (dislikes) => ({
-  type: 'SET_DISLIKES', 
-  dislikes
-  });
-
-export const startSetDislikes = () => {
-  return (dispatch) => {
-    return database.ref('requests').once('value').then((snapshot) => {
-      const dislikes = [];
-
-      snapshot.forEach((childSnapshot) => {
-              dislikes.push({
-                dislikedSongId: childSnapshot.key,
-                dislikes: childSnapshot.val().dislikes
-              })})   
-         //     console.log(likes);
-      dispatch(setDislikes(dislikes));
-    });
-  };
-};
-

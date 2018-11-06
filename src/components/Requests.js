@@ -1,12 +1,10 @@
 import React from "react";
 import { connect } from 'react-redux';
 import Request from './Request';
-import database from '../firebase/firebase';
-import {addRequest } from '../actions/requests';
 
 export class Requests extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
 
   render() {
@@ -21,18 +19,26 @@ export class Requests extends React.Component {
                   key={request.id}
                   id={request.id}
                   title={request.title}
-                  artist={request.artist}/>
+                  artist={request.artist}
+                  likes={request.likes}
+                  dislikes={request.dislikes}
+                  />
               )
             }
           </tbody>
         </table>
       }
+      
     }
     return jsx;
-}}
-const mapStateToProps = (state, props) => ({
-  requests: state.requests
-});
+}
+
+}
+const mapStateToProps = state => {
+  return {
+      requests: state.requests,
+}
+};
 
 
 export default connect(mapStateToProps)(Requests);

@@ -12,8 +12,8 @@ export default () => {
     combineReducers({
       auth: authReducer,
       requests: requestsReducer,
-      likes: likesReducerDefaultState, 
-      dislikes: dislikesReducerDefaultState
+    /*  likes: likesReducerDefaultState, 
+      dislikes: dislikesReducerDefaultState*/
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
