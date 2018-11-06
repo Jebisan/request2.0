@@ -22,6 +22,7 @@ export class Requests extends React.Component {
                   artist={request.artist}
                   likes={request.likes}
                   dislikes={request.dislikes}
+                  createdBy={request.createdBy}
                   />
               )
             }

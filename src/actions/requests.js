@@ -12,9 +12,10 @@ export const startAddRequest = (requestData = {}) => {
       title = '0',
       artist = '0',
       likes = [],
-      dislikes = []
+      dislikes = [],
+      createdBy = ''
     } = requestData;
-    const requestObject = { title, artist, likes, dislikes };
+    const requestObject = { title, artist, likes, dislikes, createdBy};
     return database.ref('requests').push(requestObject).then((ref) => {
     });
   };
@@ -31,6 +32,7 @@ export const listenForRequests = () => {
           artist: data.val().artist,
           likes: data.val().likes,
           dislikes: data.val().dislikes,
+          createdBy: data.val().createdBy
         }
       ));
       //LISTENS FOR UPDATES
@@ -45,6 +47,16 @@ export const listenForRequests = () => {
   };
 }
 
+export const listenForDeletedRequests = () => {
+  return (dispatch) => {
+    database.ref('requests').on('child_removed', data => {
+      dispatch(deleteRequest(data.key));
+    });
+  };
+}
+
+
+
 // EDIT_REQUEST
 export const updateRequest = (id, newRequestObject) => (
   {
@@ -52,3 +64,18 @@ export const updateRequest = (id, newRequestObject) => (
     id,
     newRequestObject
   });
+
+
+  //DELETE REQUEST
+export const deleteRequest = (id) => ({
+  type: 'DELETE_REQUEST',
+  id
+});
+
+
+export const startDeleteRequest = (id) => {
+  return (dispatch) => {
+    return database.ref(`requests/${id}`).remove().then(() => {
+    });
+  };
+};

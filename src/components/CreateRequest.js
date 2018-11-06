@@ -19,7 +19,9 @@ export class CreateRequest extends Component {
     const requestObject = {
       title: this.state.title,
       artist: this.state.artist,
-      likes: []
+      likes: [],
+      dislikes: [],
+      createdBy: this.props.uid
     }
   
     if (this.state.title && this.state.artist) {
@@ -92,4 +94,11 @@ const mapDispatchToProps = (dispatch) => ({
   startAddRequest: (request) => dispatch(startAddRequest(request))
 });
 
-export default connect(null, mapDispatchToProps)(CreateRequest);
+const mapStateToProps = state => {
+  return {
+    name: state.auth.name,
+    uid: state.auth.uid,
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRequest);

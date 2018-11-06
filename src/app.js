@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import {login, logout } from './actions/auth';
-import {listenForRequests} from './actions/requests';
+import {listenForRequests, listenForDeletedRequests} from './actions/requests';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
@@ -36,7 +36,7 @@ const jsx2 = (
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(jsx, document.getElementById('app'));
+    ReactDOM.render(jsx2, document.getElementById('app'));
     hasRendered = true;
    
   }
@@ -49,6 +49,7 @@ firebase.auth().onAuthStateChanged((user) => {
   if(user) {
   store.dispatch(login(user.uid, user.displayName));
   store.dispatch(listenForRequests());
+  store.dispatch(listenForDeletedRequests());
   renderApp();
               if (history.location.pathname === '/') {
                   history.push('/dashboard');

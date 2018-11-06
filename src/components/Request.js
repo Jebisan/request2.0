@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startAddLike, startRemoveLike } from '../actions/like';
 import { startAddDislike, startRemoveDislike } from '../actions/dislike';
+import { startDeleteRequest } from '../actions/requests';
 
 export class Request extends React.Component {
   constructor() {
@@ -95,18 +96,20 @@ export class Request extends React.Component {
     return foundReactionId;
   }
 
+  delete = () => {
+    this.props.onDeleteRequest(this.props.id);
+  }
+
   render() {
     return (
       <React.Fragment>
         <tr>
-
           <td>
             <h3 className="song-title">{this.props.title}</h3>
             <p className="artist-name">{this.props.artist}</p>
           </td>
           <td className="vote-column">
             <p>{this.state.numberOfDislikes}</p>
-            
             <button className="vote-btn dislike" onClick={this.dislikeHandler}>
               <i className="material-icons" style={this.state.dislike ? { color: 'red' } : null}>thumb_down</i>
             </button>
@@ -117,17 +120,20 @@ export class Request extends React.Component {
               <i className="material-icons" style={this.state.like ? { color: 'green' } : null}>thumb_up</i>
             </button>
           </td>
+          <td>
+          {this.props.createdBy===this.props.uid?<button onClick={this.delete}>X</button>:null}
+        </td>
         </tr>
       </React.Fragment>
     )
   };
-
 }
 const mapDispatchToProps = (dispatch) => ({
   onLike: (id, likeObject) => dispatch(startAddLike(id, likeObject)),
   onRemoveLike: (likedSongId, likeId) => dispatch(startRemoveLike(likedSongId, likeId)),
   onDislike: (id, dislikeObject) => dispatch(startAddDislike(id, dislikeObject)),
-  onRemoveDislike: (dislikedSongId, dislikeId) => dispatch(startRemoveDislike(dislikedSongId, dislikeId))
+  onRemoveDislike: (dislikedSongId, dislikeId) => dispatch(startRemoveDislike(dislikedSongId, dislikeId)),
+  onDeleteRequest: (id) => dispatch(startDeleteRequest(id))
 });
 
 const mapStateToProps = state => {

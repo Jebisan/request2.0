@@ -24,7 +24,8 @@ export default (state = requestsReducerDefaultState, action) => {
           title: action.request.title,
           artist: action.request.artist,
           likes: newLikeArray,
-          dislikes: newDislikeArray
+          dislikes: newDislikeArray,
+          createdBy: action.request.createdBy
         }
       ];
 
@@ -52,14 +53,19 @@ export default (state = requestsReducerDefaultState, action) => {
               title: action.newRequestObject.title,
               artist: action.newRequestObject.artist,
               likes: newLikeArray,
-              dislikes: newDislikeArray
+              dislikes: newDislikeArray,
+              createdBy: action.newRequestObject.createdBy
             
           };
         } else {
           return request;
         };
       });
-
+      case 'DELETE_REQUEST':
+      let filteredRequests =  state.filter(function(request) {
+        return request.id !== action.id;
+      }); 
+      return filteredRequests
     default:
       return state;
   }
