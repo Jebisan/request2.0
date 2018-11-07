@@ -14,17 +14,38 @@ export class Request extends React.Component {
       dislike: undefined,
       numberOfLikes: 0,
       numberOfDislikes: 0,
+      score: 0,
+      plusSymbol: true
     };
   }
   componentWillReceiveProps(nextProps){
     this.setState(() => ({ numberOfLikes: nextProps.likes.length }));
     this.setState(() => ({ numberOfDislikes: nextProps.dislikes.length }));
+    this.setState(() => ({ score: nextProps.likes.length-nextProps.dislikes.length }));
+
+
+    //SETTING PLUS 
+    if((nextProps.likes.length-nextProps.dislikes.length)>0){
+      this.setState(() => ({ plusSymbol:true}));
+    } else if (nextProps.likes.length-nextProps.dislikes.length<=0){
+      this.setState(() => ({ plusSymbol:false}));
+    }
+    
+    
+    
   }
 
 
   componentDidMount() {
+    
     this.setState(() => ({ numberOfLikes: this.props.likes.length }));
     this.setState(() => ({ numberOfDislikes: this.props.dislikes.length }));
+    this.setState((prevState) => ({ score: prevState.numberOfLikes-prevState.numberOfDislikes }));
+    if(this.state.score>0){
+      this.setState(() => ({ plusSymbol:true}));
+    } else if (this.state.score===0){
+      this.setState(() => ({ plusSymbol:false}));
+    }
     //HVIS JEG ALLEREDE HAR LIKED, SET STATE.LIKE = TRUE + 1
     for (const key in this.props.likes) {
       if (this.props.likes.hasOwnProperty(key)) {
@@ -140,18 +161,22 @@ export class Request extends React.Component {
             <h3 className="song-title">{this.props.title}</h3>
             <p className="artist-name">{this.props.artist}</p>
           </td>
-          <td className="vote-column">
-            <p>{this.state.numberOfDislikes}</p>
-            <button className="vote-btn dislike" onClick={this.dislikeHandler}>
-              <i className="material-icons" style={this.state.dislike ? { color: 'red' } : null}>thumb_down</i>
-            </button>
-          </td>
+          <td> 
+              <h1>{this.state.plusSymbol?'+':''}{this.state.score}</h1>           
+        </td>
+    
           <td className="vote-column">
             <p>{this.state.numberOfLikes}</p>
             <button className="vote-btn like" onClick={this.likeHandler}>
               <i className="material-icons" style={this.state.like ? { color: 'green' } : null}>thumb_up</i>
             </button>
           </td>
+          <td className="vote-column">
+          <p>{this.state.numberOfDislikes}</p>
+          <button className="vote-btn dislike" onClick={this.dislikeHandler}>
+            <i className="material-icons" style={this.state.dislike ? { color: 'red' } : null}>thumb_down</i>
+          </button>
+        </td>
           <td>
           {this.props.createdBy===this.props.uid?<button onClick={this.submit}>X</button>:null}
         </td>
