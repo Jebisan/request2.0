@@ -36,7 +36,7 @@ const jsx2 = (
 let hasRendered = false;
 const renderApp = () => {
   if (!hasRendered) {
-    ReactDOM.render(jsx2, document.getElementById('app'));
+    ReactDOM.render(jsx, document.getElementById('app'));
     hasRendered = true;
    
   }
