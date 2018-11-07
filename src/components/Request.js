@@ -21,24 +21,32 @@ export class Request extends React.Component {
 
 
   componentDidMount() {
-    //HVIS JEG ALLEREDE HAR LIKED, SET STATE.LIKE = TRUE
+    
+    this.setState(() => ({ numberOfLikes: this.props.likes.length }));
+    this.setState(() => ({ numberOfDislikes: this.props.dislikes.length }));
+    //HVIS JEG ALLEREDE HAR LIKED, SET STATE.LIKE = TRUE + 1
     for (const key in this.props.likes) {
       if (this.props.likes.hasOwnProperty(key)) {
         var value = this.props.likes[key];
         if (Object.values(value)[0] === this.props.uid) {
           this.setState(() => ({ like: true }))
+        //  this.setState((prevState) => {return {numberOfLikes: prevState.numberOfLikes + 1};});
+          
         }
       }
     }
-    //HVIS JEG ALLEREDE HAR DISLIKED, SET STATE.DISLIKE = TRUE
+    //HVIS JEG ALLEREDE HAR DISLIKED, SET STATE.DISLIKE = TRUE + 1
     for (const key in this.props.dislikes) {
       if (this.props.dislikes.hasOwnProperty(key)) {
         var value = this.props.dislikes[key];
         if (Object.values(value)[0] === this.props.uid) {
           this.setState(() => ({ dislike: true }))
+          //this.setState((prevState) => {return {numberOfDislikes: prevState.numberOfDislikes + 1};});
+          
         }
       }
     }
+    
   }
 
   likeHandler = () => {
@@ -100,6 +108,10 @@ export class Request extends React.Component {
     this.props.onDeleteRequest(this.props.id);
   }
 
+  getState = () => {
+    console.log(this.state)
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -123,6 +135,8 @@ export class Request extends React.Component {
           <td>
           {this.props.createdBy===this.props.uid?<button onClick={this.delete}>X</button>:null}
         </td>
+        <td>
+      </td>
         </tr>
       </React.Fragment>
     )

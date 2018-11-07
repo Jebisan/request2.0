@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from 'react-redux';
 import Request from './Request';
+import orderRequests from '../selectors/requests';
 
 export class Requests extends React.Component {
   constructor() {
@@ -37,7 +38,7 @@ export class Requests extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-      requests: state.requests,
+      requests: orderRequests(state.requests)
 }
 };
 
