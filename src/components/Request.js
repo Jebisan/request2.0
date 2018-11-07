@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { startAddLike, startRemoveLike } from '../actions/like';
 import { startAddDislike, startRemoveDislike } from '../actions/dislike';
 import { startDeleteRequest } from '../actions/requests';
+import { confirmAlert } from 'react-confirm-alert'; 
+import 'react-confirm-alert/src/react-confirm-alert.css' 
 
 export class Request extends React.Component {
   constructor() {
@@ -21,7 +23,6 @@ export class Request extends React.Component {
 
 
   componentDidMount() {
-    
     this.setState(() => ({ numberOfLikes: this.props.likes.length }));
     this.setState(() => ({ numberOfDislikes: this.props.dislikes.length }));
     //HVIS JEG ALLEREDE HAR LIKED, SET STATE.LIKE = TRUE + 1
@@ -112,6 +113,25 @@ export class Request extends React.Component {
     console.log(this.state)
   }
 
+
+  submit = () => {
+    confirmAlert({
+      title: 'Confirm to submit',
+      message: 'Are you sure you wanna delete this request?',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => this.delete()
+        },
+        {
+          label: 'No',
+        }
+      ]
+    })
+  };
+ 
+  
+
   render() {
     return (
       <React.Fragment>
@@ -133,7 +153,7 @@ export class Request extends React.Component {
             </button>
           </td>
           <td>
-          {this.props.createdBy===this.props.uid?<button onClick={this.delete}>X</button>:null}
+          {this.props.createdBy===this.props.uid?<button onClick={this.submit}>X</button>:null}
         </td>
         <td>
       </td>
