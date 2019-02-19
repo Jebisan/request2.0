@@ -1,4 +1,4 @@
-import { firebase, googleAuthProvider, facebookAuthProvider } from '../firebase/firebase';
+import { firebase, googleAuthProvider, facebookAuthProvider, twitterAuthProvider} from '../firebase/firebase';
 
 
 export const login = (uid, name) => ({
@@ -9,6 +9,30 @@ export const login = (uid, name) => ({
 export const startLoginGoogle = () => {
   return () => {
     return firebase.auth().signInWithPopup(googleAuthProvider);
+  };
+};
+
+export const startLoginTwitter = () => {
+  return () => {
+    return firebase.auth().signInWithPopup(twitterAuthProvider).then(function(result) {
+      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+      // You can use these server side with your app's credentials to access the Twitter API.
+      var token = result.credential.accessToken;
+      var secret = result.credential.secret;
+      // The signed-in user info.
+      var user = result.user;
+      // ...
+    }).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+      // ...
+    });
+    
   };
 };
 
@@ -32,6 +56,9 @@ export const startLoginFacebook = () => {
     });
   };
 };
+
+
+
 
 export const logout = () => ({
   type: 'LOGOUT'

@@ -11,10 +11,15 @@ var config = {
 
 firebase.initializeApp(config);
 
+firebase.auth().languageCode = 'da';
+
 const database = firebase.database();
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
 const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
 
-export { firebase, facebookAuthProvider, googleAuthProvider, database as default };
+const twitterAuthProvider = new firebase.auth.TwitterAuthProvider();
+
+export { firebase, facebookAuthProvider, googleAuthProvider, twitterAuthProvider, database as default };
+
