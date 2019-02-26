@@ -142,6 +142,9 @@ export class Request extends React.Component {
     return (
       <React.Fragment>
         <tr>
+          <td className="count-column">
+            <h3>{this.state.plusSymbol ? '+' : ''}{this.state.score}</h3>
+          </td>
           <td className="name-column">
             <h3 className="song-title">{this.props.title}</h3>
             <p className="artist-name">{this.props.artist}</p>
@@ -150,9 +153,6 @@ export class Request extends React.Component {
             <button className="vote-btn dislike" onClick={this.dislikeHandler}>
               <i className="material-icons" style={this.state.dislike ? { color: '#E54D42' } : null}>arrow_drop_down</i>
             </button>
-          </td>
-          <td className="count-column">
-            <h3>{/* this.state.plusSymbol ? '+' : ''*/}{this.state.score}</h3>
           </td>
           <td className="vote-column">
             <button className="vote-btn like" onClick={this.likeHandler}>

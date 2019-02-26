@@ -17,7 +17,11 @@
         }
 
         &.count-column {
-          font-weight: 300;  
+            width: 40px;
+          
+            h3 {
+                font-size: 16px;
+            }
         }
     }
 }
