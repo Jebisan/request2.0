@@ -27,7 +27,6 @@ export class Requests extends React.Component {
                   />
               )
             }
-            <tr><td><p>&nbsp;</p><p>&nbsp;</p></td></tr>
           </tbody>
         </table>
       }
