@@ -56,11 +56,19 @@
   color: white; 
   padding: 0 5px 0 5px;
 
+  vertical-align: middle;
+
   &:focus {
     outline: none;
   }
 
   i {
-    font-size: 18px;
+    font-size: 25px;
   }
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  color: #757575;
 }

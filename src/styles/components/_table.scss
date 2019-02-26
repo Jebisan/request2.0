@@ -5,10 +5,14 @@
         border-bottom: 1px solid $border-color; 
         border-top: 1px solid $border-color; 
         vertical-align: middle;
+        white-space: nowrap;
 
-        &.vote-column {
-            width: 50px;
-            text-align: right;
+        width: 40px;
+        text-align: center;
+
+        &.name-column {
+            width: 80%;
+            text-align: left;
         }
     }
 }

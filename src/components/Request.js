@@ -124,7 +124,7 @@ export class Request extends React.Component {
 
   submit = () => {
     confirmAlert({
-      title: 'Confirm to submit',
+      title: 'Delete request',
       message: 'Are you sure you wanna delete this request?',
       buttons: [
         {
@@ -142,30 +142,26 @@ export class Request extends React.Component {
     return (
       <React.Fragment>
         <tr>
-          <td>
+          <td className="name-column">
             <h3 className="song-title">{this.props.title}</h3>
             <p className="artist-name">{this.props.artist}</p>
           </td>
-          <td>
-            <h1>{this.state.plusSymbol ? '+' : ''}{this.state.score}</h1>
-          </td>
           <td className="vote-column">
-            <p>{this.state.numberOfLikes}</p>
-            <button className="vote-btn like" onClick={this.likeHandler}>
-              <i className="material-icons" style={this.state.like ? { color: 'green' } : null}>thumb_up</i>
-            </button>
-          </td>
-          <td className="vote-column">
-            <p>{this.state.numberOfDislikes}</p>
             <button className="vote-btn dislike" onClick={this.dislikeHandler}>
-              <i className="material-icons" style={this.state.dislike ? { color: 'red' } : null}>thumb_down</i>
+              <i className="material-icons" style={this.state.dislike ? { color: '#E54D42' } : null}>arrow_drop_down</i>
             </button>
           </td>
-          <td>
-            {this.props.createdBy === this.props.uid ? <button onClick={this.submit}>X</button> : null}
+          <td className="count-column">
+            <h3>{/* this.state.plusSymbol ? '+' : ''*/}{this.state.score}</h3>
           </td>
-          <td>
-        </td>
+          <td className="vote-column">
+            <button className="vote-btn like" onClick={this.likeHandler}>
+              <i className="material-icons" style={this.state.like ? { color: '#39CA74' } : null}>arrow_drop_up</i>
+            </button>
+          </td>
+          {/*<td className="delete-column">
+              {this.props.createdBy === this.props.uid ? <button className="delete-btn" onClick={this.submit}><i className="material-icons">delete_forever</i></button> : null}
+            </td>*/}
         </tr>
       </React.Fragment>
     )
