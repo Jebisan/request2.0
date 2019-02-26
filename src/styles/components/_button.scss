@@ -32,6 +32,8 @@
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
 
+  margin-left: 10px;
+
   &:hover {
     cursor: pointer;
   }
@@ -70,5 +72,5 @@
 .delete-btn {
   background: none;
   border: none;
-  color: #757575;
+  color: $dark-grey;
 }
