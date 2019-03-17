@@ -62,8 +62,7 @@
   width: 30px;
   height: 30px;
 
-  text-align: center;
-  vertical-align: middle;
+  position: relative;
 
   &:focus {
     outline: none;
@@ -71,8 +70,9 @@
 
   i {
     font-size: 14px;
-    position: relative;
-    top: 3px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
   }
 
   &.like {
