@@ -141,7 +141,7 @@ export class Request extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <tr className="animated animated-fast slideInDown">
+        <tr className="animated animated-faster slideInDown">
           <td className="count-column">
             <h3>{this.state.plusSymbol ? '+' : ''}{this.state.score}</h3>
           </td>
