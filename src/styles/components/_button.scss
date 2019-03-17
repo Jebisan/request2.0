@@ -53,19 +53,29 @@
 }
 
 .vote-btn {
-  background: none;
+  background-color: rgba(256, 256, 256, .1);
+  border-radius: 20px;
   border: none;
-  color: white; 
-  padding: 0 5px 0 5px;
-
-  vertical-align: middle;
+  color: white;
+  width: 30px;
+  height: 30px;
 
   &:focus {
     outline: none;
   }
 
   i {
-    font-size: 25px;
+    font-size: 14px;
+    position: relative;
+    top: 3px;
+  }
+
+  &.like {
+    background-color: rgba(66, 229, 154, 0.35);
+  }
+
+  &.dislike {
+    background-color: rgba(229, 77, 66, 0.35);
   }
 }
 

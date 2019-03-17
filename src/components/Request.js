@@ -141,7 +141,7 @@ export class Request extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <tr>
+        <tr className="animated animated-fast slideInDown">
           <td className="count-column">
             <h3>{this.state.plusSymbol ? '+' : ''}{this.state.score}</h3>
           </td>
@@ -150,13 +150,13 @@ export class Request extends React.Component {
             <p className="artist-name">{this.props.artist}</p>
           </td>
           <td className="vote-column">
-            <button className="vote-btn like" onClick={this.likeHandler}>
-              <i className="material-icons" style={this.state.like ? { color: '#39CA74' } : null}>thumb_up</i>
+            <button className={this.state.dislike ? 'vote-btn dislike' : 'vote-btn'} onClick={this.dislikeHandler}>
+              <i className="material-icons">thumb_down</i>
             </button>
           </td>
           <td className="vote-column">
-            <button className="vote-btn dislike" onClick={this.dislikeHandler}>
-              <i className="material-icons" style={this.state.dislike ? { color: '#E54D42' } : null}>thumb_down</i>
+            <button className={this.state.like ? 'vote-btn like' : 'vote-btn'} onClick={this.likeHandler}>
+              <i className="material-icons">thumb_up</i>
             </button>
           </td>
           {/*<td className="delete-column">
