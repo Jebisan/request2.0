@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startLoginGoogle, startLoginFacebook, startLoginTwitter } from '../actions/auth';
-import PhoneNumber from '../components/PhoneNumber';
 
 
 export const LoginPage = ({ startLoginGoogle,startLoginFacebook, startLoginTwitter  }) => (
