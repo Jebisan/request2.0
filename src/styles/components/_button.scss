@@ -22,19 +22,17 @@
 
 .login-btn {
   height: 40px;
-  border-radius: 30px;
-  border-color: rgba(166,166,166,0.5);
-  background-color: rgba(0,0,0,0.4);
-  color: white;
+  border-radius: 5px;
+  background-color: white;
+  color: rgba(0,0,0,.54);
   box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
   padding-left: 8px;
   padding-right: 24px;
   font-size: 14px;
   font-family: 'Roboto', Arial, sans-serif;
   font-weight: 400;
-  width: 220px; 
 
-  margin: 8px;
+  margin-left: 10px;
 
   &:hover {
     cursor: pointer;
@@ -55,32 +53,19 @@
 }
 
 .vote-btn {
-  background-color: rgba(256, 256, 256, .1);
-  border-radius: 20px;
+  background: none;
   border: none;
-  color: white;
-  width: 30px;
-  height: 30px;
+  color: white; 
+  padding: 0 5px 0 5px;
 
-  position: relative;
+  vertical-align: middle;
 
   &:focus {
     outline: none;
   }
 
   i {
-    font-size: 14px;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-  }
-
-  &.like {
-    background-color: rgba(66, 229, 154, 0.35);
-  }
-
-  &.dislike {
-    background-color: rgba(229, 77, 66, 0.35);
+    font-size: 25px;
   }
 }
 
