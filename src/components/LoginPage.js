@@ -15,19 +15,19 @@ export const LoginPage = ({ startLoginGoogle,startLoginFacebook, startLoginTwitt
        
         <button className="login-btn" onClick={startLoginGoogle}> 
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
-            <span>Sign in with Google</span>
+            <span>Log in with Google</span>
         </button>
-
+   
         <button className="login-btn" onClick={startLoginFacebook}> 
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/c2/F_icon.svg"/>
-          <span>Sign in with Facebook</span>
+          <span>Log in with Facebook</span>
       </button>
 
 
-      <button className="login-btn" onClick={startLoginTwitter}> 
+      {/*<button className="login-btn" onClick={startLoginTwitter}> 
       <img src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg"/>
         <span>Sign in with Twitter</span>
-    </button>
+      </button>*/}
       </div> 
     </div> 
   </div>
