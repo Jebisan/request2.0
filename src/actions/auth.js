@@ -8,7 +8,7 @@ export const login = (uid, name) => ({
 
 export const startLoginGoogle = () => {
   return () => {
-    return firebase.auth().signInWithPopup(googleAuthProvider);
+    return firebase.auth().signInWithRedirect(googleAuthProvider);
   };
 };
 
@@ -38,7 +38,7 @@ export const startLoginTwitter = () => {
 
 export const startLoginFacebook = () => {
   return () => {
-    return firebase.auth().signInWithPopup(facebookAuthProvider).then(function(result) {
+    return firebase.auth().signInWithRedirect(facebookAuthProvider).then(function(result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
