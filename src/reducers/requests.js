@@ -25,7 +25,8 @@ export default (state = requestsReducerDefaultState, action) => {
           artist: action.request.artist,
           likes: newLikeArray,
           dislikes: newDislikeArray,
-          createdBy: action.request.createdBy
+          createdByUid: action.request.createdByUid,
+          createdByName: action.request.createdByName
         }
       ];
 
@@ -54,7 +55,9 @@ export default (state = requestsReducerDefaultState, action) => {
               artist: action.newRequestObject.artist,
               likes: newLikeArray,
               dislikes: newDislikeArray,
-              createdBy: action.newRequestObject.createdBy
+              createdByUid: action.newRequestObject.createdByUid,
+              createdByName: action.newRequestObject.createdByName,
+
             
           };
         } else {

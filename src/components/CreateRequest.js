@@ -21,7 +21,9 @@ export class CreateRequest extends Component {
       artist: this.state.artist,
       likes: [],
       dislikes: [],
-      createdBy: this.props.uid
+      createdByUid: this.props.uid,
+      createdByName: this.props.name,
+
     }
   
     if (this.state.title && this.state.artist) {

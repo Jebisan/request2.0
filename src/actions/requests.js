@@ -13,9 +13,11 @@ export const startAddRequest = (requestData = {}) => {
       artist = '0',
       likes = [],
       dislikes = [],
-      createdBy = ''
+      createdByUid = '',
+      createdByName = '',
+
     } = requestData;
-    const requestObject = { title, artist, likes, dislikes, createdBy};
+    const requestObject = { title, artist, likes, dislikes, createdByUid, createdByName};
     return database.ref('requests').push(requestObject).then((ref) => {
     });
   };
