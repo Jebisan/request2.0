@@ -27,7 +27,7 @@ export class CreateRequest extends Component {
     if (this.state.title && this.state.artist) {
       this.setState(() => ({ isTitleInvalid: false, isArtistInvalid: false }));
       this.props.startAddRequest(requestObject);
-      this.props.history.push('/');
+      this.props.history.push('/request/');
     } else {
       if (!this.state.title) {
         this.setState(() => ({ isTitleInvalid: true }));

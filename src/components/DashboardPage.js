@@ -5,7 +5,7 @@ import Requests from './Requests';
 export class DashboardPage extends React.Component {
 
   createRequest = () => {
-    this.props.history.push('/createrequest');
+    this.props.history.push('/request/createrequest');
   }
 
   render () {

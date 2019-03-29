@@ -51,14 +51,14 @@ firebase.auth().onAuthStateChanged((user) => {
   store.dispatch(listenForRequests());
   store.dispatch(listenForDeletedRequests());
   renderApp();
-              if (history.location.pathname === '/') {
-                  history.push('/dashboard');
+              if (history.location.pathname === '/request/') {
+                  history.push('/request/dashboard');
               }
 
           
   } else {
       store.dispatch(logout());
       renderApp();
-      history.push('/');
+      history.push('/request/');
   }
 });
