@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { startLoginGoogle, startLoginFacebook, startLoginTwitter } from '../actions/auth';
-import PhoneNumber from '../components/PhoneNumber';
 
 
 export const LoginPage = ({ startLoginGoogle,startLoginFacebook, startLoginTwitter  }) => (
@@ -9,7 +8,7 @@ export const LoginPage = ({ startLoginGoogle,startLoginFacebook, startLoginTwitt
     <div className="row"> 
       <div className="col-12" align="center"> 
         <div className="logo-container"> 
-          <img className="logo" src="/request/images/logo.jpg"></img>
+          <img className="logo" src="/images/logo.jpg"></img>
         </div> 
 
        
