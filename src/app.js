@@ -51,7 +51,7 @@ firebase.auth().onAuthStateChanged((user) => {
   store.dispatch(listenForRequests());
   store.dispatch(listenForDeletedRequests());
   renderApp();
-              if (history.location.pathname === '/request/') {
+              if (history.location.pathname === '/request') {
                   history.push('/request/dashboard');
               }
 
@@ -59,6 +59,6 @@ firebase.auth().onAuthStateChanged((user) => {
   } else {
       store.dispatch(logout());
       renderApp();
-      history.push('/request/');
+      history.push('/request');
   }
 });

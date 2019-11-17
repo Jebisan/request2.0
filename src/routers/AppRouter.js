@@ -7,16 +7,13 @@ import LoginPage from '../components/LoginPage';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import CreateRequest from '../components/CreateRequest';
-import PhoneNumber from '../components/PhoneNumber';
 
 export const history = createHistory();
 
 const AppRouter = () => (
   <Router history={history}>
     <Switch>
-      <PublicRoute path="/request/" component={LoginPage} exact={true} />
-
-      <PrivateRoute path="/request/phonenumber" component={PhoneNumber}/>
+      <PublicRoute path="/request" component={LoginPage} exact={true} />
       <PrivateRoute path="/request/dashboard" component={DashboardPage} />
       <PrivateRoute path="/request/createrequest" component={CreateRequest} />
 
